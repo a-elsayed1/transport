@@ -40,7 +40,24 @@ jobs:
           find . -type f -name "*.php" -print0 | while IFS= read -r -d '' file; do
             php -l "$file"
           done
+       
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+         php-version: '8.2'
 
+      - name: Install Dependencies
+        run: composer install --no-interaction --prefer-dist
+
+      - name: Run Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+
+      - name: Composer Audit
+        run: composer audit
+
+      - name: PHP Syntax Check
+        run: find . -name "*.php" -exec php -l {} \;
+      
       - name: Run PHPUnit
         run: |
           if [ -f vendor/bin/phpunit ]; then
