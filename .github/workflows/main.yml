@@ -27,14 +27,7 @@ jobs:
       - name: Verify PHP Version
         run: php -v
 
-      - name: Install Composer Dependencies
-        run: |
-          if [ -f composer.json ]; then
-            composer install --no-interaction --prefer-dist
-          else
-            echo "No composer.json found"
-          fi
-
+      
       - name: PHP Syntax Check
         run: |
           find . -type f -name "*.php" -print0 | while IFS= read -r -d '' file; do
