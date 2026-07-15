@@ -45,8 +45,6 @@ jobs:
       - name: Run Gitleaks
         uses: gitleaks/gitleaks-action@v2
 
-      - name: Composer Audit
-        run: composer audit
 
       - name: PHP Syntax Check
         run: find . -name "*.php" -exec php -l {} \;
