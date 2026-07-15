@@ -34,14 +34,7 @@ jobs:
             php -l "$file"
           done
        
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-         php-version: '8.2'
-
-      - name: Install Dependencies
-        run: composer install --no-interaction --prefer-dist
-
+      
       - name: Run Gitleaks
         uses: gitleaks/gitleaks-action@v2
 
